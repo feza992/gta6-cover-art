@@ -1,0 +1,92 @@
+/* Vice Panels — editor chrome. Dark UI so the bright poster stands out. */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #0d0d14;
+  color: #f2eef7;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.topbar {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  align-items: center; justify-content: space-between;
+  padding: 14px 20px;
+  background: linear-gradient(90deg, #1d0b2e, #3a0a2e 55%, #7a1a3a);
+  border-bottom: 3px solid #ffd23f;
+}
+.brand h1 {
+  margin: 0;
+  font-family: Anton, "Arial Black", sans-serif;
+  font-size: 30px; letter-spacing: 2px;
+  background: linear-gradient(90deg, #ffd23f, #ff7a18, #ff2e88);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.brand p { margin: 2px 0 0; font-size: 13px; color: rgba(255,255,255,0.75); }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+button {
+  background: #23232f; color: #f2eef7;
+  border: 1px solid #3a3a4a; border-radius: 8px;
+  padding: 8px 12px; font-size: 14px; cursor: pointer;
+}
+button:hover:not(:disabled) { border-color: #ff2e88; }
+button:disabled { opacity: 0.4; cursor: default; }
+button.primary { background: #ff2e88; border-color: #ff2e88; font-weight: 700; }
+button.primary:hover:not(:disabled) { background: #ff4a9b; }
+button.on { border-color: #ffd23f; background: #3a2f10; color: #ffd23f; }
+
+main { display: flex; gap: 18px; padding: 18px 20px; align-items: flex-start; }
+.controls { width: 330px; flex: none; display: flex; flex-direction: column; gap: 16px; }
+.controls section {
+  background: #17171f; border: 1px solid #262633;
+  border-radius: 12px; padding: 14px;
+}
+.controls h2 { margin: 0 0 10px; font-size: 15px; color: #ffd23f; letter-spacing: 0.4px; }
+.hint { font-size: 12px; color: rgba(255,255,255,0.6); margin: 6px 0; line-height: 1.45; }
+label { display: block; font-size: 13px; margin: 8px 0 2px; color: rgba(255,255,255,0.85); }
+label.check { display: flex; align-items: center; gap: 8px; margin: 6px 0; cursor: pointer; }
+input[type="text"] {
+  width: 100%; margin-top: 4px; padding: 8px 10px;
+  background: #0d0d14; color: #fff;
+  border: 1px solid #3a3a4a; border-radius: 8px; font-size: 14px;
+}
+input[type="range"] { width: 100%; accent-color: #ff2e88; }
+.slider-row { display: flex; align-items: center; gap: 10px; }
+.slider-row b { font-size: 12px; color: #ffd23f; min-width: 44px; text-align: right; }
+.row { display: flex; gap: 8px; margin-top: 10px; }
+.file-btn {
+  background: #23232f; border: 1px solid #3a3a4a; border-radius: 8px;
+  padding: 8px 12px; font-size: 14px; cursor: pointer; margin: 0;
+}
+.file-btn:hover { border-color: #ff2e88; }
+
+.pick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.pick { font-size: 13px; padding: 9px 8px; text-align: left; }
+.pick.grade { border-left: 6px solid var(--g1, #888); }
+
+.photo-bar { display: flex; flex-direction: column; gap: 8px; }
+.thumb {
+  display: flex; align-items: center; gap: 10px;
+  background: #0d0d14; border: 1px solid #3a3a4a; border-radius: 8px;
+  padding: 6px; text-align: left; width: 100%;
+}
+.thumb img { width: 64px; height: 44px; object-fit: cover; border-radius: 4px; flex: none; }
+.thumb span { font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.thumb em { font-style: normal; font-size: 11px; color: #ffd23f; margin-left: auto; flex: none; }
+
+.stage { flex: 1; min-width: 0; text-align: center; }
+#preview {
+  max-width: 100%; max-height: calc(100vh - 220px);
+  border-radius: 6px;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.6);
+  cursor: crosshair; background: #000;
+}
+.size-note { font-size: 13px; color: #ffd23f; margin: 10px 0 2px; }
+
+footer { padding: 6px 20px 20px; font-size: 12px; color: rgba(255,255,255,0.45); }
+footer code { color: rgba(255,255,255,0.65); }
+
+/* Full-window cover scene for headless screenshots (?shot=cover). */
+body.shot-cover { background: #000; }
+body.shot-cover header, body.shot-cover main, body.shot-cover footer { display: none; }
+body.shot-cover #shotCanvas {
+  display: block; width: 100vw; height: 100vh; object-fit: contain;
+}

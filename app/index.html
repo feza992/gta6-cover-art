@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Panels — Leonida Cover Studio</title>
+<style>
+@font-face { font-family: 'Anton'; src: url('fonts/Anton-Regular.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Pacifico'; src: url('fonts/Pacifico-Regular.ttf') format('truetype'); font-display: swap; }
+</style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <h1>VICE PANELS</h1>
+    <p>Leonida Cover Studio — turn your photos into a Vice City poster</p>
+  </div>
+  <div class="actions">
+    <button id="shuffleBtn" type="button" title="Random layout, grades and caption">🎲 Shuffle</button>
+    <button id="undoBtn" type="button" disabled>↩ Undo</button>
+    <button id="redoBtn" type="button" disabled>↪ Redo</button>
+    <button id="exportBtn" type="button" class="primary">⬇ Export PNG</button>
+    <button id="exportAllBtn" type="button" class="primary">⬇ Export all sizes</button>
+  </div>
+</header>
+
+<main>
+  <aside class="controls">
+    <section>
+      <h2>1 · Photos</h2>
+      <p class="hint">Your photos never leave this machine. Click a photo to put it in the selected panel.</p>
+      <div id="photoBar" class="photo-bar"></div>
+      <div class="row">
+        <label class="file-btn">+ Add your photos
+          <input id="addPhotos" type="file" accept="image/*" multiple hidden>
+        </label>
+        <button id="samplesBtn" type="button">Load samples</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>2 · Layout</h2>
+      <div id="layoutBox" class="pick-grid"></div>
+    </section>
+
+    <section>
+      <h2>3 · Post size</h2>
+      <div id="sizeBox" class="pick-grid"></div>
+    </section>
+
+    <section>
+      <h2>4 · Caption</h2>
+      <label>Kicker <input id="kickerIn" type="text" value="VICE CITY • EST. 2026"></label>
+      <label>Title <input id="titleIn" type="text" value="LEONIDA"></label>
+      <label>Subtitle (script) <input id="subtitleIn" type="text" value="two outlaws, one last score"></label>
+      <label>Credit line <input id="creditIn" type="text" value="NOVEMBER 19, 2026 — LAUNCH DAY"></label>
+      <label>Title size
+        <span class="slider-row"><input id="titleScale" type="range" min="0.7" max="1.3" step="0.05" value="1"><b id="titleScaleVal">100%</b></span>
+      </label>
+    </section>
+
+    <section>
+      <h2>5 · Selected panel — <span id="panelLabel">Panel 1 of 3</span></h2>
+      <div id="gradeBox" class="pick-grid"></div>
+      <label>Zoom
+        <span class="slider-row"><input id="zoomIn" type="range" min="1" max="3" step="0.05" value="1.15"><b id="zoomVal">1.15×</b></span>
+      </label>
+      <label>Pan left–right <input id="panXIn" type="range" min="-1" max="1" step="0.05" value="0"></label>
+      <label>Pan up–down <input id="panYIn" type="range" min="-1" max="1" step="0.05" value="0"></label>
+      <p class="hint">Tip: drag the photo inside the preview to move it, scroll over a panel to zoom.</p>
+    </section>
+
+    <section>
+      <h2>6 · Finish</h2>
+      <label class="check"><input id="grainCk" type="checkbox" checked> Film grain</label>
+      <label class="check"><input id="vigCk" type="checkbox" checked> Vignette</label>
+      <label class="check"><input id="halfCk" type="checkbox"> Halftone dots in the band</label>
+      <label class="check"><input id="badgeCk" type="checkbox" checked> Launch-day badge</label>
+    </section>
+  </aside>
+
+  <section class="stage">
+    <canvas id="preview" width="1080" height="1080"></canvas>
+    <p id="sizeNote" class="size-note"></p>
+    <p class="hint">Click a panel to select it. The cover exports as a PNG in the size above — no watermark, no upload.</p>
+  </section>
+</main>
+
+<canvas id="shotCanvas" style="display:none"></canvas>
+
+<footer>
+  <p>Vice Panels is an original cover maker. It uses no Rockstar Games logo, artwork, character or font.
+  Lettering: Anton and Pacifico (SIL Open Font License, under <code>fonts/</code>).
+  Sample photos were made with an image model and are free to use.</p>
+</footer>
+
+<script type="module" src="./src/main.js"></script>
+<script type="module" src="./src/shots.js"></script>
+</body>
+</html>
